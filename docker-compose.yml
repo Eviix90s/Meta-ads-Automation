@@ -1,7 +1,6 @@
 services:
   app:
-    build: .
-    image: meta-valv-app
+    image: alexn90s/meta-ads-automation:latest
     restart: unless-stopped
     ports:
       - "8080:8080"
@@ -17,3 +16,10 @@ services:
       - ./logs:/app/logs
     extra_hosts:
       - "host.docker.internal:host-gateway"
+
+  watchtower:
+    image: containrrr/watchtower
+    restart: unless-stopped
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    command: --interval 60 meta-ads-automation
