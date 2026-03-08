@@ -1,0 +1,10 @@
+nicegui>=2.0
+fastapi
+uvicorn
+pandas
+gspread
+google-auth
+google-auth-oauthlib
+psycopg2-binary
+bcrypt
+openpyxl
