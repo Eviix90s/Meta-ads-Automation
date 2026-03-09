@@ -1,6 +1,6 @@
-# Meta Ads Automation Platform
+# 📊 Meta Ads Automation Platform
 
-> Automated web platform for managing Meta (Facebook/Instagram) advertising campaigns — built for internal business operations at **Vuela a la Vida**.
+> Automated web platform for managing Meta (Facebook/Instagram) advertising campaigns — built for internal business operations at ****.
 
 ---
 
@@ -31,7 +31,7 @@ Over several development iterations, it evolved into a **full-stack web platform
 ## Features
 
 - **Animated Login Page** — glassmorphism card, video background, splash → form transition
-- **PostgreSQL Authentication** — bcrypt-hashed passwords, email domain validation (`@vuelaalavida.com`)
+- **PostgreSQL Authentication** — bcrypt-hashed passwords, email domain validation (`****`)
 - **Session Management** — NiceGUI user storage, protected routes, logout button
 - **Meta Ads Automation** — automated campaign management via browser automation
 - **Google Sheets Integration** — reads and writes campaign data to spreadsheets
@@ -84,7 +84,7 @@ Windows Server (24/7)
 - All secrets managed via `.env` file (excluded from git)
 - Database password, DB user, and session secret loaded from environment variables
 - `credenciales.json` (Google service account) excluded from git, mounted as Docker volume
-- Access restricted to users with `@vuelaalavida.com` email domain
+- Access restricted to users with `@****` email domain
 
 ---
 
