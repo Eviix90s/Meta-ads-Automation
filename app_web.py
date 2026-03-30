@@ -1183,11 +1183,11 @@ def login_page():
 
                 _nicegui_app.storage.user['autenticado'] = True
                 _nicegui_app.storage.user['usuario'] = nombre_usuario
-                await ui.run_javascript("""
-                    var o = document.getElementById('success-overlay');
-                    o.classList.add('show');
-                    setTimeout(function(){ window.location.href = '/'; }, 2000);
-                """)
+                await ui.run_javascript(
+                    "document.getElementById('success-overlay').classList.add('show');"
+                )
+                await asyncio.sleep(2.0)
+                ui.navigate.to('/')
 
             inp_pass.on('keydown.enter', do_login)
             ui.button('Ingresar', on_click=do_login).props(
