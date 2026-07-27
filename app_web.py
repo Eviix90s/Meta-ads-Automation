@@ -20,7 +20,7 @@ import gspread
 from google.oauth2.service_account import Credentials
 from fastapi import Request
 from fastapi.responses import JSONResponse
-from nicegui import ui, run, app as _nicegui_app
+from nicegui import context, ui, run, app as _nicegui_app
 
 
 
@@ -1576,6 +1576,7 @@ def index():
                         dlg.open()
 
                     async def _run_processing(usar_checkpoint: bool):
+                        client = context.client
                         logica.procesando = True
                         logica.pausado    = False
                         logica.cancelar   = False
@@ -1621,6 +1622,13 @@ def index():
                         )
 
                         logica.procesando = False
+
+                        # Si el cliente se desconectó durante el procesamiento (túnel caído,
+                        # pestaña cerrada), sus elementos ya no existen y crear el diálogo
+                        # de resultados lanza "The parent element ... has been deleted".
+                        if not client.has_socket_connection:
+                            return
+
                         btn_procesar.set_enabled(True)
                         btn_pausar.set_enabled(False)
                         btn_cancelar.set_enabled(False)
@@ -1770,5 +1778,6 @@ if __name__ in {'__main__', '__mp_main__'}:
         dark=True,
         favicon='logo_valv.png',
         show=True,
+        reconnect_timeout=30.0,
         storage_secret=os.environ.get('STORAGE_SECRET', 'META-VALV-2026-SECRET'),
     )
